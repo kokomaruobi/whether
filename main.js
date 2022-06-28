@@ -8,21 +8,16 @@ fetch(api)
 }
 
 function makePage(data) {
+  for(let i=0;i<3;i++) {
+
     console.log(data);
-    setData('day0',dateFormat(data.daily.time[0]));
-    setData('day1',dateFormat(data.daily.time[1]));
-    setData('weathercode0',getWMO(data.daily.weathercode[0]));
-    setData('weathercode1',getWMO(data.daily.weathercode[1]));
-  
-    setData('temperature_2m_max0',data.daily.temperature_2m_max[0] + '°C');
-    setData('temperature_2m_max1',data.daily.temperature_2m_max[1] + '°C');
-  
-    setData('temperature_2m_min0',data.daily.temperature_2m_min[0] + '°C');
-    setData('temperature_2m_min1',data.daily.temperature_2m_min[1] + '°C');
-  
-    setData('precipitation_sum0',data.daily.precipitation_sum[0] + 'mm');
-    setData('precipitation_sum1',data.daily.precipitation_sum[1] + 'mm');
-  
+    setData('day'+i,dateFormat(data.daily.time[i]));
+    setData('weathercode'+i,getWMO(data.daily.weathercode[i]));
+    setData('temperature_2m_max'+i,data.daily.temperature_2m_max[i] + '°C');
+    setData('temperature_2m_min'+i,data.daily.temperature_2m_min[i] + '°C');
+    setData('precipitation_sum'+i,data.daily.precipitation_sum[i] + 'mm');
+    }
+
     if ( data.daily.precipitation_sum[0] > 0 ) {
         document.getElementById('body').style.backgroundImage
         = 'linear-gradient(#ccf 5%, #fff 10%)';
